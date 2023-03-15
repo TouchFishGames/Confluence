@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TouchFishGames : mac公证流程</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">TouchFishGames</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="TouchFishGames_196610.html">TouchFishGames</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1343526.html">Steam相关</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            TouchFishGames : mac公证流程
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> 胡文强</span>, last modified on 1月 15, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>mac需要签名+公证后再上传</p><ul><li><p>准备：开发者账号</p></li></ul><p style="margin-left: 30.0px;">执行如下命令将appleid登录凭证存储到钥匙串（在<a class="external-link" data-card-appearance="inline" href="https://appleid.apple.com/" rel="nofollow">https://appleid.apple.com/</a> 设置App专用密码）：</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">xcrun notarytool store-credentials &quot;AC_PASSWORD&quot; --apple-id &quot;xxx&quot; --team-id xxx --password xxx</pre>
+</div></div><ul><li><p>创建文件xxx.entitlements:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+    &lt;key&gt;com.apple.security.cs.disable-library-validation&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;com.apple.security.cs.disable-executable-page-protection&lt;/key&gt;
+    &lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</pre>
+</div></div><ul><li><p>执行如下命令对app进行签名</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">codesign --deep --force --verify --verbose=4 --timestamp --options runtime --entitlements xxx.entitlements --sign &quot;Developer ID Application: Wenqiang Hu (93KF73LVN9)&quot; xxx.app</pre>
+</div></div><ul><li><p>将签名后的应用压缩为zip</p></li><li><p>上传公证</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">xcrun notarytool submit xxx.app.zip --keychain-profile &quot;AC_PASSWORD&quot; --wait</pre>
+</div></div><ul><li><p>查看公证结果</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">xcrun notarytool log xxx --keychain-profile &quot;AC_PASSWORD&quot; developer_log.json</pre>
+</div></div><ul><li><p>将公证结果应用到app文件</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">xcrun stapler staple xxx.app</pre>
+</div></div><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on 3月 12, 2023 17:41</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

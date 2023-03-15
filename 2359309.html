@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TouchFishGames : Item脚本模板</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">TouchFishGames</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="TouchFishGames_196610.html">TouchFishGames</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="262145.html">功能设计</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1638401.html">Item系统</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            TouchFishGames : Item脚本模板
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> 杨志庄</span>, last modified on 12月 20, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private static readonly ItemType Type = ItemType.None;</pre>
+</div></div><p>这里的Type一定要修改为该脚本对应物品的类型。否则会Assert报错。</p><p /><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private static void OnInit()</pre>
+</div></div><p>此部分内容不可修改，统一默认初始化。</p><p /><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+/// 使用物品
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;localPlayer&quot;&gt;使用物品的玩家的NetworkIdentity&lt;/param&gt;
+/// &lt;returns&gt;成功返回true，失败返回false&lt;/returns&gt;
+private static bool TryUse(NetworkIdentity localPlayer = null)</pre>
+</div></div><p>尝试使用物品的函数。负责实现物品使用时的效果。效果成功生效返回true，效果失败返回false。</p><p /><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+/// 拾取物品时的Hook
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;itemMetaData&quot;&gt;物品元数据&lt;/param&gt;
+/// &lt;param name=&quot;localPlayer&quot;&gt;拾取物品的玩家的NetworkIdentity&lt;/param&gt;
+private static void OnPick(ItemSO itemMetaData, NetworkIdentity localPlayer = null)</pre>
+</div></div><p>拾取物品时执行的函数。详情见注释。</p><p /><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+/// 被动丢弃物品时的Hook
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;itemInstance&quot;&gt;地图上生成的物品实例&lt;/param&gt;
+/// &lt;param name=&quot;localPlayer&quot;&gt;丢弃物品的玩家的NetworkIdentity&lt;/param&gt;
+private static void OnDropPassive(GameObject itemInstance, NetworkIdentity localPlayer = null)</pre>
+</div></div><p>被动丢弃物品(如死亡掉落，饥荒被青蛙攻击)时执行的函数。详情见注释。</p><p /><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+/// 主动丢弃物品时的Hook
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;itemInstance&quot;&gt;地图上生成的物品实例&lt;/param&gt;
+/// &lt;param name=&quot;localPlayer&quot;&gt;丢弃物品的玩家的NetworkIdentity&lt;/param&gt;
+private static void OnDropActive(GameObject itemInstance, NetworkIdentity localPlayer = null)</pre>
+</div></div><p>主动丢弃物品时执行的函数。详情见注释。</p><p /><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+/// 装备物品时的Hook
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;playerInstance&quot;&gt;玩家的实例&lt;/param&gt;
+/// &lt;param name=&quot;localPlayer&quot;&gt;装备物品的玩家的NetworkIdentity&lt;/param&gt;
+private static void OnEquip(GameObject playerInstance, NetworkIdentity localPlayer = null)</pre>
+</div></div><p>装备物品时执行的函数。详情见注释。</p>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on 3月 12, 2023 17:41</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

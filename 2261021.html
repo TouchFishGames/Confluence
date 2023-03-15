@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TouchFishGames : 新Item的追加方法</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">TouchFishGames</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="TouchFishGames_196610.html">TouchFishGames</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="262145.html">功能设计</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1638401.html">Item系统</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            TouchFishGames : 新Item的追加方法
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> 杨志庄</span> on 12月 20, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>1.添加新ItemType枚举</p><p>    在 TouchFish.Scripts.Item.ItemType(/Assets/TouchFish/Scripts/Item/ItemType.cs) 中添加新的枚举Key</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">namespace TouchFish.Scripts.Item
+{
+    public enum ItemType
+    {
+        None,
+        HealthPotionSmall,
+        PoisonPotionSmall,
+    }
+}</pre>
+</div></div><p /><p>2.创建Item元数据</p><p style="margin-left: 30.0px;">    在/Assets/TouchFish/Data/ItemData/目录下右键新建”Create/TouchFishGames/ItemData”，以”ItemData{物品名}”形式命名。</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="557" loading="lazy" src="attachments/2261021/2424853.png?width=557" data-image-src="attachments/2261021/2424853.png" data-height="444" data-width="703" data-unresolved-comment-count="0" data-linked-resource-id="2424853" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20221220-052702.png" data-base-url="https://touchfishgames.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2261021" data-linked-resource-container-version="1" data-media-id="07653220-2560-4843-b54c-e57f212a003d" data-media-type="file"></span><p style="margin-left: 30.0px;">    鼠标悬停在具体标签上可查看说明，按说明填充元数据即可。后续可以考虑扩展从csv一键生成元数据的功能。</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2261021/2424860.png" data-image-src="attachments/2261021/2424860.png" data-height="243" data-width="428" data-unresolved-comment-count="0" data-linked-resource-id="2424860" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20221220-053056.png" data-base-url="https://touchfishgames.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2261021" data-linked-resource-container-version="1" data-media-id="b308ff05-d3b5-42d9-ad93-9b74f29ab360" data-media-type="file"></span><p /><p>3.创建Item可执行脚本</p><p style="margin-left: 30.0px;">    在/Assets/TouchFish/Scripts/Item/目录下右键新建”Create/TouchFishGames/Item Template”，以”Item{物品名}”形式命名。</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="557" loading="lazy" src="attachments/2261021/2424866.png?width=557" data-image-src="attachments/2261021/2424866.png" data-height="637" data-width="692" data-unresolved-comment-count="0" data-linked-resource-id="2424866" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20221220-052917.png" data-base-url="https://touchfishgames.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2261021" data-linked-resource-container-version="1" data-media-id="969f8eb0-7ef0-4251-8017-315da2c4a44f" data-media-type="file"></span><p style="margin-left: 30.0px;">    修改type变量为该脚本对应的ItemType(不可为默认的ItemType.None)。然后实现对应函数即可。</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2261021/2424872.png" data-image-src="attachments/2261021/2424872.png" data-height="447" data-width="583" data-unresolved-comment-count="0" data-linked-resource-id="2424872" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20221220-053730.png" data-base-url="https://touchfishgames.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2261021" data-linked-resource-container-version="1" data-media-id="8cd4d7f8-30fc-4548-9756-9dd1cea754a0" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2261021/2424853.png">image-20221220-052702.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2261021/2424860.png">image-20221220-053056.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2261021/2424866.png">image-20221220-052917.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2261021/2424872.png">image-20221220-053730.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on 3月 12, 2023 17:41</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
